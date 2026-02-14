@@ -2,16 +2,26 @@ import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import MapView from './components/MapView'
 import BusList from './components/BusList'
+import FromTo from './components/FromTo'
+import Auth from './components/Auth'
 
 export default function App() {
   const [buses, setBuses] = useState([])
   const [selected, setSelected] = useState(null)
+  const [selectedRoute, setSelectedRoute] = useState('')
+  const [fromStop, setFromStop] = useState('')
+  const [toStop, setToStop] = useState('')
+  const [fare, setFare] = useState(null)
+  const [user, setUser] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('bustrack_user') || 'null') } catch { return null }
+  })
   const intervalRef = useRef(null)
 
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const res = await axios.get('/api/buses')
+        const base = import.meta.env.VITE_API_BASE || 'http://localhost:3000'
+        const res = await axios.get(`${base}/api/buses`)
         // Normalize the response so `buses` is always an array.
         const data = res.data
         let normalized = []
@@ -111,12 +121,58 @@ export default function App() {
     return () => clearInterval(intervalRef.current)
   }, [])
 
+  const handleLogout = async () => {
+    try {
+      const base = import.meta.env.VITE_API_BASE || 'http://localhost:3000'
+      await axios.post(`${base}/auth/logout`)
+    } catch (e) {}
+    localStorage.removeItem('bustrack_token')
+    localStorage.removeItem('bustrack_user')
+    setUser(null)
+  }
+
+  if (!user) {
+    return (
+      <div className="app-root">
+        <header className="app-header">Private Bus Tracking</header>
+        <Auth onAuth={(u) => setUser(u)} />
+      </div>
+    )
+  }
+
   return (
     <div className="app-root">
-      <header className="app-header">Private Bus Tracking</header>
+      <header className="app-header">
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <div>Private Bus Tracking</div>
+          <div style={{fontSize: 14}}>
+            {user.email} <button onClick={handleLogout} style={{marginLeft: 8}}>Logout</button>
+          </div>
+        </div>
+      </header>
       <div className="app-body">
-        <MapView buses={buses} selected={selected} onSelect={setSelected} />
-        <BusList buses={buses} onSelect={setSelected} selected={selected} />
+        <MapView buses={buses} selected={selected} onSelect={setSelected} fare={fare} />
+        <aside className="list-column">
+          <FromTo
+            buses={buses}
+            onSelectBus={setSelected}
+            selectedRoute={selectedRoute}
+            setSelectedRoute={setSelectedRoute}
+            fromStop={fromStop}
+            setFromStop={setFromStop}
+            toStop={toStop}
+            setToStop={setToStop}
+            setFare={setFare}
+          />
+          {fare && (
+            <div style={{padding: '8px', borderRadius: 6, background: '#fff', marginBottom: 8, border: '1px solid #eee'}}>
+              <strong>Fare estimate:</strong>
+              <div>Distance: {fare.distanceKm ?? fare.distance} km</div>
+              <div>Total: ₹{fare.totalFare}</div>
+            </div>
+          )}
+          <BusList buses={buses} onSelect={setSelected} selected={selected} />
+        </aside>
       </div>
     </div>
   )

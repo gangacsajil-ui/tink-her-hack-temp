@@ -52,10 +52,6 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
-// SPA fallback - serve index.html for any route not matched by API
-app.get('*', (req, res) => {
-  res.sendFile(path.join(clientPath, 'index.html'))
-})
 
 // Error handler (must be last)
 app.use(errorHandler)
@@ -72,6 +68,13 @@ async function startServer() {
     
     busSimulationService.startSimulation()
     console.log('✓ Bus simulation service started')
+
+    // SPA fallback - serve index.html for any route not matched by API
+    app.get('*', (req, res) => {
+      // Don't let the SPA fallback capture API or auth routes
+      if (req.path.startsWith('/api') || req.path.startsWith('/auth')) return res.status(404).json({ success: false, error: 'Not found' })
+      return res.sendFile(path.join(clientPath, 'index.html'))
+    })
 
     // Start Express server
     app.listen(PORT, () => {

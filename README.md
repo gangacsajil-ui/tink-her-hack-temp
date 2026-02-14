@@ -2,27 +2,27 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# [PRIVATE BUS TRAKING SYSTEM] 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: [SHE HACKS]
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: [GANGA C S] - [CHRIST COLLEGE OF ENGINEERING(AUTONOMOUS),IRINJALAKUDA
+]
 
 ### Hosted Project Link
-[mention your project hosted link here]
+[http://localhost:5173/]
 
 ### Project Description
-[2-3 lines about what your project does]
+[Our project is a Private Bus Tracking System that shows live bus location on map,calculates ticket fare based on user-selected sourse and destination,and displays servise status.It helpspassengers plan travel efficiently with real time data and accurate pricing.]
 
 ### The Problem statement
-[What problem are you solving?]
+[Many passengers using private buses do not have access to real time bus locations or accurate ticket pricing,leading to uncertainty and long waiting times.This project solves the problem by providing live bus tracking and dynamic fare calculations based on the scelected routes.]
 
 ### The Solution
-[How are you solving it?]
+[Our solution provides an interactive map that displays the current positions of private buses and allows users to select their boarding and destination points. The application then calculates the ticket fare dynamically and displays bus status, giving commuters reliable travel information and eliminating guesswork.]
 
 ---
 
@@ -31,25 +31,20 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
-
-**For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
+- Languages used: [Python, Javascript,Flask,HTML,CSS]
+- Frameworks used: [Flask]
+- Libraries used: [Flask , jsonify & request]
+- Tools used: [ VS Code, Git, Github, Brower development tools,Flask server]
 
 ---
 
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Real-Time Bus Location Tracking: [System shows the current positions of multiple buses on an interactive map, so users can see where each bus is at any moment.]
+- Dynamic Ticket Fare Calculation: [Users can select a source and destination stop, and the backend calculates the ticket price based on the distance between them — giving accurate and instant fare information.]
+- Service Status Display: [Each bus has a real-time service status, helping users know whether the bus is available or delayed before planning their trip.]
+- Interactive Map Interface: [The frontend uses a map library so users can visually interact with bus routes and locations, making the system intuitive and user-friendly.]
 
 ---
 
@@ -67,10 +62,6 @@ List the key features of your project:
 [Run commands - e.g., npm start, python app.py]
 ```
 
-### For Hardware:
-
-#### Components Required
-[List all components needed with specifications]
 
 #### Circuit Setup
 [Explain how to set up the circuit]
@@ -83,14 +74,19 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
+![Screenshot1](Screenshot(1).png)
 *Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name)
+![Screenshot2](Screenshot(3).png)
 *Add caption explaining what this shows*
 
-![Screenshot3](Add screenshot 3 here with proper name)
+![Screenshot3](Screenshort(4).png)
 *Add caption explaining what this shows*
+
+![Screenshot4](Screenshort(5).png)
+
+
+![Screenshot5](Screenshort(6).png)
 
 #### Diagrams
 

@@ -13,3 +13,29 @@ html,body,#root{height:100%;margin:0}
 .bus-item.selected{border-color:#0b5fff;background:#eaf2ff}
 .bus-title{font-weight:600}
 .bus-sub{color:var(--muted);font-size:13px}
+
+/* Auth styles */
+.auth-root{display:flex;align-items:center;justify-content:center;height:calc(100vh - 52px)}
+.auth-card{background:white;padding:20px;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.08);width:360px}
+.auth-card h2{margin:0 0 12px}
+.auth-card form{display:flex;flex-direction:column;gap:8px}
+.auth-card label{display:flex;flex-direction:column;font-size:13px;color:var(--muted)}
+.auth-card input{padding:8px;border:1px solid #ddd;border-radius:6px}
+.auth-card button{padding:8px 12px;background:#0b5fff;color:white;border:none;border-radius:6px;cursor:pointer}
+.auth-footer{margin-top:10px;text-align:center}
+.auth-error{background:#ffecec;color:#b00020;padding:8px;border-radius:6px;margin-bottom:8px}
+
+/* From/To styles */
+.fromto-root{padding:8px 0;border-bottom:1px solid #eee;margin-bottom:8px}
+.fromto-root h4{margin:0 0 8px}
+.fromto-row{margin-bottom:8px}
+.fromto-row label{display:flex;flex-direction:column;font-size:13px}
+.fromto-row select{padding:8px;border-radius:6px;border:1px solid #ddd}
+.fromto-summary{margin-top:8px}
+.fromto-list{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.fromto-bus{padding:8px;border-radius:6px;background:#fafafa;border:1px solid #eee;cursor:pointer}
+.bus-title-small{font-weight:600}
+.bus-sub-small{font-size:12px;color:var(--muted)}
+.more{font-size:12px;color:var(--muted)}
+
+

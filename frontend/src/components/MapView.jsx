@@ -9,7 +9,7 @@ function MapCenter({ position }) {
   return null
 }
 
-export default function MapView({ buses, selected, onSelect }) {
+export default function MapView({ buses, selected, onSelect, fare }) {
   const safeBuses = Array.isArray(buses) ? buses : []
   const defaultCenter = (selected && selected.lat && selected.lng)
     ? [selected.lat, selected.lng]
@@ -32,8 +32,13 @@ export default function MapView({ buses, selected, onSelect }) {
               <Popup>
                 <div>
                   <strong>{b.route || `Bus ${b.id}`}</strong>
-                  <div>Speed: {b.speed ?? 'N/A'} km/h</div>
-                  <div>Status: {b.status ?? 'Unknown'}</div>
+                    <div>Speed: {b.speed ?? 'N/A'} km/h</div>
+                    <div>Status: {b.status ?? 'Unknown'}</div>
+                    {selected && fare && (
+                      <div style={{marginTop:6}}>
+                        <strong>Fare:</strong> ₹{fare.totalFare} <div style={{fontSize:12,color:'#666'}}>Distance: {fare.distanceKm ?? fare.distance} km</div>
+                      </div>
+                    )}
                 </div>
               </Popup>
             </CircleMarker>
