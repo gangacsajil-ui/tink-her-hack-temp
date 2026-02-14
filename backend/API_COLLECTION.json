@@ -1,0 +1,242 @@
+{
+  "info": {
+    "name": "Bus Tracking API",
+    "description": "Complete API collection for Bus Tracking System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Buses",
+      "item": [
+        {
+          "name": "Get All Buses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/buses",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "buses"]
+            },
+            "description": "Fetch all active buses with current positions, speeds, and routes"
+          }
+        },
+        {
+          "name": "Get Single Bus",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/buses/bus-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "buses", "bus-1"]
+            },
+            "description": "Get detailed information about a specific bus"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Routes & Stops",
+      "item": [
+        {
+          "name": "Get All Routes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/routes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "routes"]
+            },
+            "description": "Fetch all available routes"
+          }
+        },
+        {
+          "name": "Get All Stops",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/stops",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "stops"]
+            },
+            "description": "Fetch all stops across all routes"
+          }
+        },
+        {
+          "name": "Get Stops by Route ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/stops/route-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "stops", "route-1"]
+            },
+            "description": "Fetch all stops for a specific route"
+          }
+        },
+        {
+          "name": "Get Stops with Filter",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/stops?routeId=route-1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "stops"],
+              "query": [
+                {"key": "routeId", "value": "route-1"}
+              ]
+            },
+            "description": "Fetch stops filtered by route ID using query parameter"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fare Calculation",
+      "item": [
+        {
+          "name": "Calculate Fare (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceLat\": 12.9352,\n  \"sourceLng\": 77.6245,\n  \"destLat\": 13.1939,\n  \"destLng\": 77.7068\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/fare",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "fare"]
+            },
+            "description": "Calculate fare between two coordinates using Haversine distance"
+          }
+        },
+        {
+          "name": "Calculate Fare (GET)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/fare/estimate?fromLat=12.9352&fromLng=77.6245&toLat=13.1939&toLng=77.7068",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "fare", "estimate"],
+              "query": [
+                {"key": "fromLat", "value": "12.9352"},
+                {"key": "fromLng", "value": "77.6245"},
+                {"key": "toLat", "value": "13.1939"},
+                {"key": "toLng", "value": "77.7068"}
+              ]
+            },
+            "description": "Calculate fare using query parameters"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\",\n  \"userType\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/signup",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "signup"]
+            },
+            "description": "Register a new user"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@bustrack.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "login"]
+            },
+            "description": "Login and receive JWT token"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_JWT_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/auth/logout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "logout"]
+            },
+            "description": "Logout (stateless - just send request)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["health"]
+        },
+        "description": "Check if backend service is running"
+      }
+    }
+  ]
+}
